@@ -1,10 +1,21 @@
-<table>
-    <thead>
-        <th>Poster</th>
-        <th>Movie</th>
-        <th>Description</th>
-    </thead>
-    <tbody>
-        <tr app-movie-listing></tr>
-    </tbody>
-</table>
+<div *ngIf="movies; else noMovies">
+    <table>
+        <thead>
+            <th>Poster</th>
+            <th>Movie</th>
+            <th>Description</th>
+        </thead>
+        <tbody>
+            <!-- [movie] is a property we pass to child element, app-movie-listing -->
+            <!-- any time you return an observable, you need to pipe data via async property -->
+            <tr *ngFor="let m of movies" [movie]="m" app-movie-listing>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- ng-template is case sensitive -->
+<ng-template #noMovies>
+    <div style="padding-top: 20px; display: block;">
+        No movies yet, why don't you search for some?
+    </div>
+</ng-template>

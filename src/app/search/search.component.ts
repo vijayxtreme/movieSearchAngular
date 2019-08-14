@@ -7,14 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
  // values = '';
+  searchTerm = '';
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  onEnter(value: string) {
+    this.searchTerm = value;
+    this.handle(this.searchTerm);
+  }
+
   handle(value: string) {
-    alert(value);
+    this.searchTerm = value
+    console.log("Searching")
+
   }
 
 }
