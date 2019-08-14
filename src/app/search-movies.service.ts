@@ -19,7 +19,7 @@ export class SearchMoviesService {
     return of (MOVIES);
   }
   getMovieByTerm(term: string): Observable<any> {
-    let url=`http://www.omdbapi.com/?s=${term}&r=json&apikey=e93bd1`
+    let url=`https://www.omdbapi.com/?s=${term}&r=json&apikey=e93bd1`
     return this.http.get<Movie[]>(url)
   }
 }
