@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 //import { MOVIES } from '../fakeMovies'; //move this out and use a service
-import { SearchMoviesService } from '../search-movies.service';
+
 
 
 @Component({
@@ -9,13 +9,12 @@ import { SearchMoviesService } from '../search-movies.service';
   styleUrls: ['./movie-listings.component.css']
 })
 export class MovieListingsComponent implements OnInit {
- // @Input() movies;
-  movies;
+  @Input() movies;
+  //movies;
 
-  constructor(private movieService: SearchMoviesService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.movieService.getMovies()
-      .subscribe(movies => this.movies = movies);
+
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchMoviesService } from '../search-movies.service';
 
 @Component({
   selector: 'app-search',
@@ -8,8 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class SearchComponent implements OnInit {
  // values = '';
   searchTerm = '';
+  foundMovies;
 
-  constructor() { }
+  constructor(private movieService: SearchMoviesService) { }
 
   ngOnInit() {
   }
@@ -22,7 +24,14 @@ export class SearchComponent implements OnInit {
   handle(value: string) {
     this.searchTerm = value
     console.log("Searching")
-
+    this.movieService.getMovieByTerm(this.searchTerm)
+     .subscribe(movies => {
+      console.log(movies);
+      let foundMovies = movies.Search.map(item => {
+        return { poster: item.Poster, name: item.Title, year: item.Year, imdb_url: item.imdbID }
+      })
+      this.foundMovies = foundMovies;
+     });
   }
 
 }
