@@ -30,7 +30,7 @@ export class SearchComponent implements OnInit {
       let foundMovies = movies.Search.map(item => {
         return { poster: item.Poster, name: item.Title, year: item.Year, imdb_url: item.imdbID }
       })
-      this.foundMovies = foundMovies;
+      this.foundMovies = foundMovies.slice(0,4); // return first 5 in results
      });
   }
 
